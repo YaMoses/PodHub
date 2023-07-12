@@ -7,8 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		824FA1C62A1BCB570044D322 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824FA1C52A1BCB570044D322 /* APIService.swift */; };
 		8276514229F670D000336587 /* PodcastsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8276514129F670D000336587 /* PodcastsController.swift */; };
 		8276514529F6722700336587 /* Podcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8276514429F6722700336587 /* Podcast.swift */; };
+		8276CA822A5EDAD3000F978B /* EpisodesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8276CA812A5EDAD3000F978B /* EpisodesController.swift */; };
+		8298CB0F2A1D02B5007B8818 /* PodcastCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8298CB0E2A1D02B5007B8818 /* PodcastCell.xib */; };
+		8298CB122A1D048F007B8818 /* PodcastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8298CB112A1D048F007B8818 /* PodcastCell.swift */; };
+		8298CB152A1D2176007B8818 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 8298CB142A1D2176007B8818 /* SDWebImage */; };
 		82C9C93B29F687A300134902 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 82C9C93A29F687A300134902 /* Alamofire */; };
 		82C9C93D29F6925500134902 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C9C93C29F6925500134902 /* Search.swift */; };
 		82CBEA2A29F12176005ACDB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82CBEA2929F12176005ACDB2 /* AppDelegate.swift */; };
@@ -21,8 +26,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		824FA1C52A1BCB570044D322 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		8276514129F670D000336587 /* PodcastsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastsController.swift; sourceTree = "<group>"; };
 		8276514429F6722700336587 /* Podcast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Podcast.swift; sourceTree = "<group>"; };
+		8276CA812A5EDAD3000F978B /* EpisodesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesController.swift; sourceTree = "<group>"; };
+		8298CB0E2A1D02B5007B8818 /* PodcastCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PodcastCell.xib; sourceTree = "<group>"; };
+		8298CB112A1D048F007B8818 /* PodcastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastCell.swift; sourceTree = "<group>"; };
 		82C9C93C29F6925500134902 /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		82CBEA2629F12176005ACDB2 /* PodHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PodHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82CBEA2929F12176005ACDB2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -40,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8298CB152A1D2176007B8818 /* SDWebImage in Frameworks */,
 				82C9C93B29F687A300134902 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -47,10 +57,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		824FA1C42A1BCB300044D322 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				824FA1C52A1BCB570044D322 /* APIService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		8276514029F670B100336587 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				8276514129F670D000336587 /* PodcastsController.swift */,
+				8276CA812A5EDAD3000F978B /* EpisodesController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -62,6 +81,15 @@
 				82C9C93C29F6925500134902 /* Search.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		8298CB102A1D03CC007B8818 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8298CB112A1D048F007B8818 /* PodcastCell.swift */,
+				8298CB0E2A1D02B5007B8818 /* PodcastCell.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		82CBEA1D29F12176005ACDB2 = {
@@ -83,6 +111,8 @@
 		82CBEA2829F12176005ACDB2 /* PodHub */ = {
 			isa = PBXGroup;
 			children = (
+				8298CB102A1D03CC007B8818 /* View */,
+				824FA1C42A1BCB300044D322 /* Service */,
 				8276514329F6721500336587 /* Models */,
 				8276514029F670B100336587 /* Controllers */,
 				82CBEA2929F12176005ACDB2 /* AppDelegate.swift */,
@@ -115,6 +145,7 @@
 			name = PodHub;
 			packageProductDependencies = (
 				82C9C93A29F687A300134902 /* Alamofire */,
+				8298CB142A1D2176007B8818 /* SDWebImage */,
 			);
 			productName = PodHub;
 			productReference = 82CBEA2629F12176005ACDB2 /* PodHub.app */;
@@ -146,6 +177,7 @@
 			mainGroup = 82CBEA1D29F12176005ACDB2;
 			packageReferences = (
 				82C9C93929F687A300134902 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				8298CB132A1D2176007B8818 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 			);
 			productRefGroup = 82CBEA2729F12176005ACDB2 /* Products */;
 			projectDirPath = "";
@@ -163,6 +195,7 @@
 			files = (
 				82CBEA3629F1217A005ACDB2 /* LaunchScreen.storyboard in Resources */,
 				82CBEA3329F1217A005ACDB2 /* Assets.xcassets in Resources */,
+				8298CB0F2A1D02B5007B8818 /* PodcastCell.xib in Resources */,
 				82CBEA3129F12176005ACDB2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -175,11 +208,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				82CBEA2E29F12176005ACDB2 /* ViewController.swift in Sources */,
+				8276CA822A5EDAD3000F978B /* EpisodesController.swift in Sources */,
 				82CBEA2A29F12176005ACDB2 /* AppDelegate.swift in Sources */,
 				8276514529F6722700336587 /* Podcast.swift in Sources */,
 				8276514229F670D000336587 /* PodcastsController.swift in Sources */,
 				82CBEA4229F123AE005ACDB2 /* MainTabBarController.swift in Sources */,
 				82CBEA4429F12776005ACDB2 /* SceneDelegate.swift in Sources */,
+				824FA1C62A1BCB570044D322 /* APIService.swift in Sources */,
+				8298CB122A1D048F007B8818 /* PodcastCell.swift in Sources */,
 				82C9C93D29F6925500134902 /* Search.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -398,6 +434,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		8298CB132A1D2176007B8818 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		82C9C93929F687A300134902 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
@@ -409,6 +453,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		8298CB142A1D2176007B8818 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8298CB132A1D2176007B8818 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
 		82C9C93A29F687A300134902 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 82C9C93929F687A300134902 /* XCRemoteSwiftPackageReference "Alamofire" */;

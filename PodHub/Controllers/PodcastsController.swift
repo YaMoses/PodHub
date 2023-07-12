@@ -6,18 +6,13 @@
 //
 
 import UIKit
-import Alamofire
 
 class PodcastsController: UITableViewController, UISearchBarDelegate{
     
     
     let cellID = "podcast"
     
-    var podcasts = [
-        Podcast(trackName: "Fluid mechanic", artistName: "Yamusa Dalhatu"),
-        Podcast(trackName: "Optics", artistName: "Carl Sagan"),
-        Podcast(trackName: "Astrophysics for dummies", artistName: "Niel Degrasse Tyson")
-    ]
+    var podcasts = [Podcast]()
     
     let searchController = UISearchController(searchResultsController: nil)
     
@@ -30,9 +25,13 @@ class PodcastsController: UITableViewController, UISearchBarDelegate{
     }
     
     private func setupTableView(){
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
+        //tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
+        
+        let nib = UINib(nibName: "PodcastCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: cellID)
     }
-    private func setupSearchBar() {
+    fileprivate func setupSearchBar() {
+        definesPresentationContext = true
         searchController.searchBar.delegate = self
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
@@ -40,26 +39,14 @@ class PodcastsController: UITableViewController, UISearchBarDelegate{
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print(searchText)
-        
-        let url = "https://itunes.apple.com/search?term=\(searchText)"
-        AF.request(url).response { [unowned self] responseData in
-            if let err = responseData.error {
-                print("Failed to establish connection", err)
-                return
-            }
-            
-            guard let data = responseData.data else {return}
-            
-            do {
-                let searchResult = try JSONDecoder().decode(Search.self, from: data)
-                print("Result count: ",searchResult.resultCount)
-                self.podcasts = searchResult.results
-                self.tableView.reloadData()
-            } catch let decodeerror {
-                print("Failed to decode", decodeerror.localizedDescription)
-            }
+        //print(searchText)
+        print(1)
+        APIService.shared.fetchPodcasts(searchText: searchText) { (podcasts) in
+            self.podcasts = podcasts
+            self.tableView.reloadData()
         }
+        
+      
     }
 
     //MARK:- TableView
@@ -68,13 +55,30 @@ class PodcastsController: UITableViewController, UISearchBarDelegate{
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! PodcastCell
         
         let podcast = podcasts[indexPath.row]
-        cell.textLabel?.text = "\(podcast.trackName ?? "")\n\(podcast.artistName ?? "")"
-        cell.textLabel?.numberOfLines = -1
-        cell.imageView?.image = UIImage(named: "appicon")
+        cell.podcast = podcast
+//        cell.textLabel?.text = "\(podcast.trackName ?? "")\n\(podcast.artistName ?? "")"
+//        cell.textLabel?.numberOfLines = -1
+//        cell.imageView?.image = UIImage(named: "appicon")
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 132
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let episodeController = EpisodesController()
+        let podcast = self.podcasts[indexPath.row]
+        episodeController.podcast = podcast
+        navigationController?.pushViewController(episodeController, animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return self.podcasts.count > 0 ? 0 : 250
     }
 }
